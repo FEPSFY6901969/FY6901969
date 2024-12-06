@@ -143,9 +143,9 @@ Each step in this process, from initial screening through to the advanced treatm
 <hr>
 <script>
   // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId, outputId) {
+  function displayWordCount(sectionId) {
     // Get the text content from the specified section
-    const text = document.getElementById(sectionId).textContent;
+    const text = document.getElementById(sectionId).textContent || document.getElementById(sectionId).innerText;
     // Split text into words based on spaces and filter out any empty strings
     const wordArray = text.trim().split(/\s+/);
     // Count the words
@@ -156,10 +156,10 @@ Each step in this process, from initial screening through to the advanced treatm
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
-    const IntroductionCount = displayWordCount("Abstract");
-    const AnalysisCount = displayWordCount("How is water purified?");
+    const abstractWordCount = displayWordCount("Abstract");
+    const purificationWordCount = displayWordCount("How is water purified?");
     // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
+    const totalWordCount = abstractWordCount + purificationWordCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
